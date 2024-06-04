@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isToastMessageNeeded = false
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ZStack{
+                Button(action: {
+                    isToastMessageNeeded = true
+                }, label: {
+                    Text("Click")
+                })
+            
+                if isToastMessageNeeded {
+                    ToastMessage(text: "Toast Message Test", isToastMessageNeeded: $isToastMessageNeeded)
+                }
+            }
         }
         .padding()
     }
